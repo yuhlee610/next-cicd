@@ -1,0 +1,28 @@
+name: NextJs 14 CI/CD
+run-name: ${{ github.actor }} is testing
+on:
+  push:
+    branches:
+      - 'main'
+jobs:
+  build:
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+      - name: Login to docker hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p password ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build docker image
+        run: docker build -t next-cicd
+      - name: Publish image to docker hub
+        run: docker push next-cicd:latest
+  deploy:
+    needs: build
+    runs-on: [aws-ec2]
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull next-cicd:latest
+      - name: Delete old container
+        run: docker rm -f next-cicd-container
+      - name: Run docker container
+        run: docker run -d -p 3000:3000 --name next-cicd-container next-cicd
