@@ -13,16 +13,16 @@ jobs:
       - name: Login to docker hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Build docker image
-        run: docker build -t next-cicd .
+        run: docker build -t huylejh/next-cicd .
       - name: Publish image to docker hub
-        run: docker push next-cicd:latest
+        run: docker push huylejh/next-cicd:latest
   deploy:
     needs: build
     runs-on: [aws-ec2]
     steps:
       - name: Pull image from docker hub
-        run: docker pull next-cicd:latest
+        run: docker pull huylejh/next-cicd:latest
       - name: Delete old container
-        run: docker rm -f next-cicd-container
+        run: docker rm -f huylejh/next-cicd-container
       - name: Run docker container
-        run: docker run -d -p 3000:3000 --name next-cicd-container next-cicd
+        run: docker run -d -p 3000:3000 --name huylejh/next-cicd-container huylejh/next-cicd
