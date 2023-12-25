@@ -20,7 +20,7 @@ export default function Search() {
 
   return (
     <div>
-      <h1 className="text-center text-3xl my-6">Search products</h1>
+      <h1 className="text-center text-3xl my-6">Search my products</h1>
 
       <form className="mx-5 mb-8" onSubmit={handleSubmit}>
         <label
