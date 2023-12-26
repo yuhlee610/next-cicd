@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sync-env": "rm -f .env && aws secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:ap-southeast-1:352772137404:secret:staging/next-cicd-3UuoFQ --region=ap-southeast-1 --query SecretString --output text --profile=test-sync-env > .env.json && node ./scripts/json2env.js .env.json .env && rm -f .env.json "
   },
   "dependencies": {
     "react": "^18",
