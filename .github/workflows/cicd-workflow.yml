@@ -27,7 +27,7 @@ jobs:
       - name: Delete old container
         run: docker rm -f next-cicd-container
       - name: Delete old image
-        run: docker image rm image huylejh/next-cicd:latest
+        run: docker image rm -f image huylejh/next-cicd:latest
       - name: Pull image from docker hub
         run: docker pull huylejh/next-cicd:latest
       - name: Run docker container
