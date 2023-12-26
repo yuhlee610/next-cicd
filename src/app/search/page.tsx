@@ -20,7 +20,7 @@ export default function Search() {
 
   return (
     <div>
-      <h1 className="text-center text-3xl my-6">{`Search my products - ${process.env.PRODUCT_VERSION}`}</h1>
+      <h1 className="text-center text-3xl my-6">{`Search my products - ${process.env.NEXT_PUBLIC_PRODUCT_VERSION}`}</h1>
 
       <form className="mx-5 mb-8" onSubmit={handleSubmit}>
         <label
