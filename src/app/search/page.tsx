@@ -20,7 +20,7 @@ export default function Search() {
 
   return (
     <div>
-      <h1 className="text-center text-3xl my-6">Search my products</h1>
+      <h1 className="text-center text-3xl my-6">{`Search my products - ${process.env.PRODUCT_VERSION}`}</h1>
 
       <form className="mx-5 mb-8" onSubmit={handleSubmit}>
         <label
@@ -65,7 +65,9 @@ export default function Search() {
         </div>
       </form>
       {products?.map((product) => (
-        <p key={product.id} className='mx-5'>{product.title}</p>
+        <p key={product.id} className="mx-5">
+          {product.title}
+        </p>
       ))}
     </div>
   );
