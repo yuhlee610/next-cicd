@@ -11,7 +11,7 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v4
       - name: Configure profile
-        run:  aws configure set aws_access_key_id "${{ secrets.AWS_ACCESS_KEY }}" --profile sync-env && aws configure set aws_secret_access_key "${{ secrets.AWS_SECRET_KEY }}" --profile test-sync-env && aws configure set region "ap-southeast-1" --profile test-sync-env
+        run:  aws configure set aws_access_key_id "${{ secrets.AWS_ACCESS_KEY }}" --profile test-sync-env && aws configure set aws_secret_access_key "${{ secrets.AWS_SECRET_KEY }}" --profile test-sync-env && aws configure set region "ap-southeast-1" --profile test-sync-env
       - name: Generate .env 
         run: npm run sync-env
       - name: Login to docker hub
